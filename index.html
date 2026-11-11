@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="ar"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style></head><body>
+<title>بلاك بير · اليوم الوطني 2026</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;600;800;900&family=IBM+Plex+Sans+Arabic:wght@400;500;700&display=swap">
+<style>
+/* Layout: Black Bear's own beige site palette, always light (it lives inside blackbear.qa).
+   It reads as blackbear.qa dressed for the day (like a holiday doodle): flag beside the logo, swinging bunting, serrated maroon band, then the product grid, steps and a slogan finale. */
+:root{
+  color-scheme:light;
+  --bg:#faf7f2; --alt:#f3ede4; --sand:#efe7da; --paper:#fff; --line:#e6ded2; --line-strong:#d5cbbc;
+  --ink:#141210; --text:#1f1b18; --muted:#6b625a; --subtle:#948a80;
+  --maroon:#7a1e2b; --maroon-hover:#621622; --maroon-deep:#4a1019; --qnd:#8e1537;
+  --gold:#c89b3c; --gold-hi:#e6c98a; --gold-text:#8a6a1e; --gold-soft:#fbf3e0;
+  --on-dark:#fbf3e0; --on-dark-muted:#e3cfae;
+  --wa:#25a35a;
+  --font-display:"Alexandria","IBM Plex Sans Arabic",system-ui,sans-serif;
+  --font-body:"IBM Plex Sans Arabic",system-ui,sans-serif;
+  --ease:cubic-bezier(.2,0,0,1);
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:16px;line-height:1.8;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--bg)}
+.wrap{max-width:1240px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--font-display);margin:0;line-height:1.25;text-wrap:balance;color:var(--ink)}
+p{margin:0}
+img{display:block;max-width:100%}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--maroon);outline-offset:3px;border-radius:6px}
+
+/* buttons (site style: 10px radius) */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:var(--font-display);font-weight:600;font-size:.95rem;text-decoration:none;border-radius:10px;padding:13px 24px;border:1.5px solid transparent;transition:transform .3s var(--ease),background .25s,color .25s,border-color .25s;white-space:nowrap}
+.btn:hover{transform:translateY(-2px)}
+.btn svg{width:18px;height:18px;flex:none}
+.btn-maroon{background:var(--maroon);color:#fff}
+.btn-maroon:hover{background:var(--maroon-hover)}
+.btn-line{border-color:var(--maroon);color:var(--maroon);background:transparent}
+.btn-line:hover{background:#f8ecee}
+.btn-gold{background:var(--gold-hi);color:var(--maroon-deep)}
+.btn-gold:hover{background:#f1dcaa}
+.btn-ghost-light{border-color:#fbf3e077;color:var(--on-dark)}
+.btn-ghost-light:hover{background:#fbf3e01a}
+.btn-sm{padding:9px 16px;font-size:.85rem}
+
+/* header */
+header.site{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;gap:22px;height:72px}
+.logo{display:block;width:106px;height:40px;flex:none}
+.logo img{width:100%;height:100%}
+nav.links{display:flex;gap:22px;font-size:.9rem;color:var(--muted)}
+nav.links a{text-decoration:none;transition:color .2s}
+nav.links a:hover{color:var(--ink)}
+nav.links a[aria-current]{color:var(--maroon);font-weight:700}
+header .sp{flex:1}
+
+/* hero */
+.hero{position:relative;padding-block:0 48px;overflow:hidden}
+.bunting{position:relative;height:150px;margin-bottom:-30px;pointer-events:none}
+.bunting svg.string{position:absolute;inset:0 0 auto;width:100%;height:90px}
+.flags{position:absolute;inset:6px 2% auto;display:flex;justify-content:space-between}
+.flag{width:clamp(30px,5vw,62px);aspect-ratio:3/4;transform:translateY(var(--y));transform-origin:50% 0;position:relative}
+.flag i{position:absolute;inset:0;background:var(--gold);clip-path:polygon(0 0,100% 0,100% 100%,50% 76%,0 100%);display:block;animation:swing 3.6s ease-in-out infinite alternate;transform-origin:50% 0;animation-delay:calc(var(--d) * -0.37s)}
+.flag i::before{content:"";position:absolute;inset:3px 3px 4px;clip-path:polygon(0 0,100% 0,100% 100%,50% 76%,0 100%)}
+.flag i::after{content:"";position:absolute;width:22%;aspect-ratio:1;left:39%;top:30%;transform:rotate(45deg);background:var(--gold)}
+.flag.m i::before{background:var(--qnd)}
+.flag.c i::before{background:var(--paper)}
+.flag.c i::after{background:var(--qnd)}
+@keyframes swing{from{transform:rotate(-5deg)}to{transform:rotate(5deg)}}
+
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
+.hero-copy{display:flex;flex-direction:column;gap:24px;min-width:0;position:relative;z-index:2}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;align-self:flex-start;border:1px solid var(--line-strong);background:var(--paper);border-radius:999px;padding:4px 14px;font-size:.82rem;color:var(--muted)}
+.eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--qnd)}
+.h1{font-size:clamp(2.7rem,1.2rem + 5.4vw,6rem);font-weight:900;line-height:1.14;letter-spacing:-.01em}
+.h1 .line{display:block;overflow:hidden;padding-block:.06em}
+.h1 .line>span{display:inline-block}
+.h1 em{font-style:normal;color:var(--maroon);position:relative;z-index:0}
+.h1 em::after{content:"";position:absolute;inset-inline:0;bottom:.1em;height:.14em;background:var(--gold-hi);z-index:-1;border-radius:2px}
+.lead{font-size:clamp(1rem,.95rem + .3vw,1.15rem);color:var(--muted);max-width:32em}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px}
+.count{display:flex;align-items:center;gap:16px;border-top:1px solid var(--line);padding-top:18px}
+.count .num{font-family:var(--font-display);font-weight:900;font-size:3.2rem;line-height:1;color:var(--maroon);font-variant-numeric:tabular-nums;min-width:2ch}
+.count .lbl{font-size:.88rem;color:var(--muted);line-height:1.55}
+.count .lbl b{color:var(--ink)}
+
+.fan{position:relative;height:clamp(360px,42vw,560px);min-width:0}
+.fan figure{position:absolute;margin:0;width:58%;aspect-ratio:4/5;border-radius:20px;overflow:hidden;box-shadow:0 30px 60px -24px #1c141040;background:var(--sand);border:6px solid var(--paper)}
+.fan figure img{width:100%;height:100%;object-fit:cover}
+.fan .f1{top:12%;left:0;transform:rotate(-9deg);z-index:1}
+.fan .f2{top:0;left:21%;transform:rotate(1deg);z-index:3}
+.fan .f3{top:14%;left:42%;transform:rotate(9deg);z-index:2}
+.seal{position:absolute;z-index:4;bottom:2%;left:4%;width:clamp(96px,11vw,132px);aspect-ratio:1;border-radius:50%;background:var(--qnd);color:var(--gold-hi);display:grid;place-items:center;text-align:center;font-family:var(--font-display);font-weight:800;line-height:1.1;box-shadow:0 0 0 5px var(--paper),0 0 0 6px var(--gold);animation:spin 22s linear infinite}
+.seal svg{position:absolute;inset:6px;width:calc(100% - 12px);height:calc(100% - 12px)}
+.seal svg text{fill:var(--gold-hi);font-family:var(--font-display);font-size:10.5px;font-weight:600}
+.seal b{font-size:1.9rem;animation:spin 22s linear infinite reverse;display:block}
+.seal b small{display:block;font-size:.55rem;font-weight:600;color:#f3e4be}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* marquee */
+.marquee{background:var(--maroon);color:var(--gold-hi);overflow:hidden;border-block:3px solid var(--gold);position:relative}
+.mq-track{display:flex;width:max-content;direction:ltr;padding-block:18px}
+.mq-track span{font-family:var(--font-display);font-weight:800;font-size:clamp(1.3rem,1rem + 1.6vw,2.4rem);white-space:nowrap;padding-inline:28px;display:flex;align-items:center;gap:56px;direction:rtl}
+.mq-track span i{width:11px;height:11px;background:var(--gold-hi);transform:rotate(45deg);display:block;flex:none}
+.mq-track span.o{color:transparent;-webkit-text-stroke:1.2px var(--gold-hi)}
+
+/* logo doodle: a small Qatar flag waving beside the plaque */
+.brand{display:flex;align-items:flex-end;gap:2px;text-decoration:none;flex:none}
+.mini-flag{width:39px;height:52px;flex:none;overflow:visible;margin-bottom:-4px}
+@media (max-width:560px){.mini-flag{width:30px;height:40px}}
+.mini-flag .cloth{transform-origin:2px 4px;animation:wave 2.4s ease-in-out infinite}
+@keyframes wave{0%,100%{transform:skewY(0deg) scaleX(1)}50%{transform:skewY(-6deg) scaleX(.94)}}
+
+/* collection grid (scales to any number of products) */
+.collection{padding-block:96px 90px}
+.sec-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px 40px;margin-bottom:28px}
+.sec-head .t{display:flex;flex-direction:column;gap:10px;max-width:40rem}
+.sec-head h2{font-size:clamp(2rem,1.2rem + 3vw,3.4rem);font-weight:900;line-height:1.18}
+.sec-head p{color:var(--muted)}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
+.filters button{font:inherit;font-size:.88rem;border:1px solid var(--line-strong);background:var(--paper);color:var(--muted);border-radius:999px;padding:6px 16px;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.filters button:hover{border-color:var(--maroon);color:var(--maroon)}
+.filters button[aria-pressed="true"]{background:var(--maroon);border-color:var(--maroon);color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:22px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;min-width:0;transition:box-shadow .35s var(--ease),translate .35s var(--ease)}
+.card:hover{box-shadow:0 18px 40px -18px #1c141040;translate:0 -4px}
+.card .ph{position:relative;aspect-ratio:1/1;background:var(--sand);overflow:hidden}
+.card .ph img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease)}
+.card:hover .ph img{transform:scale(1.05)}
+.card .badge{position:absolute;top:12px;inset-inline-start:12px;display:inline-flex;align-items:center;gap:6px;background:#faf7f2ee;color:var(--qnd);font-size:.75rem;font-weight:700;border-radius:999px;padding:3px 10px 3px 12px}
+.card .badge svg{width:10px;height:14px}
+.card .body{padding:18px 20px 20px;display:flex;flex-direction:column;gap:10px;flex:1}
+.card h3{font-size:1.15rem;font-weight:700}
+.card p{color:var(--muted);font-size:.92rem;line-height:1.7}
+.chips{display:flex;flex-wrap:wrap;gap:6px;list-style:none;margin:0;padding:0}
+.chips li{font-size:.76rem;border:1px solid var(--line);background:var(--alt);color:var(--muted);border-radius:999px;padding:2px 10px}
+.card .foot{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:14px;border-top:1px solid var(--line)}
+.card .foot small{font-size:.85rem;color:var(--muted)}
+.card .foot small b{color:var(--ink)}
+.card[hidden]{display:none}
+.more{margin-top:28px;display:flex;align-items:center;gap:14px;border:1.5px dashed var(--line-strong);border-radius:16px;padding:18px 20px;color:var(--muted);font-size:.92rem}
+.more b{color:var(--ink)}
+.more .ic{flex:none;width:40px;height:40px;border-radius:50%;background:var(--gold-soft);color:var(--gold-text);display:grid;place-items:center}
+.more .ic svg{width:20px;height:20px}
+
+/* serrated flag edge on the marquee */
+.marquee{border-top:0}
+.marquee::before{content:"";position:absolute;inset:0 0 auto;height:14px;background:linear-gradient(135deg,var(--bg) 50%,transparent 50%) 0 0/24px 14px repeat-x,linear-gradient(225deg,var(--bg) 50%,transparent 50%) 0 0/24px 14px repeat-x;z-index:1}
+.mq-track{padding-block:26px 18px}
+
+/* steps */
+.steps{background:var(--alt);padding-block:100px;border-block:1px solid var(--line)}
+.steps .head{display:flex;flex-direction:column;gap:10px;margin-bottom:56px}
+.steps h2{font-size:clamp(2rem,1.2rem + 3vw,3.4rem);font-weight:900}
+.track-line{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.track-line .rail{position:absolute;top:27px;inset-inline:27px;height:2px;background:var(--line-strong)}
+.track-line .rail i{position:absolute;inset:0;background:var(--maroon);transform-origin:right}
+.st{position:relative;display:flex;flex-direction:column;gap:12px}
+.st .dot{width:56px;height:56px;border-radius:50%;background:var(--maroon);color:var(--gold-hi);display:grid;place-items:center;font-family:var(--font-display);font-weight:900;font-size:1.3rem;box-shadow:0 0 0 6px var(--alt);position:relative;z-index:1}
+.st h3{font-size:1.25rem;font-weight:800}
+.st p{color:var(--muted);max-width:22em}
+
+/* finale: a maroon CTA card on the beige page */
+.finale{padding-block:90px}
+.finale .card{position:relative;background:var(--maroon);color:var(--on-dark);border-radius:28px;overflow:hidden;padding:84px 24px 76px;text-align:center}
+.finale .card::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 70% at 50% 35%,#9a2a3b 0,transparent 70%)}
+.sadu{position:absolute;top:0;bottom:0;width:22px;background:repeating-linear-gradient(180deg,transparent 0 46px,#4a1019 46px 52px,transparent 52px 58px),repeating-linear-gradient(135deg,#e6c98a 0 2px,#c89b3c 2px 5px);box-shadow:inset -2px 0 0 #8a6a1e,inset 2px 0 0 #f3e4be}
+.sadu.r{right:clamp(14px,3vw,36px)}.sadu.l{left:clamp(14px,3vw,36px)}
+.finale .inner{position:relative;display:flex;flex-direction:column;align-items:center;gap:24px;padding-inline:clamp(24px,6vw,80px)}
+.finale .slogan{width:min(600px,74vw);height:auto;filter:drop-shadow(0 2px 0 #4a1019)}
+.finale .by{font-size:.85rem;color:var(--on-dark-muted)}
+.finale h2{font-size:clamp(1.5rem,1.1rem + 2vw,2.6rem);font-weight:800;color:#fff;max-width:20em}
+.finale .phone{font-family:var(--font-display);font-weight:800;font-size:clamp(1.3rem,1rem + 1.4vw,2rem);color:var(--gold-hi);direction:ltr;unicode-bidi:isolate;user-select:all;font-variant-numeric:tabular-nums}
+.finale .cta-row{justify-content:center}
+
+footer{border-top:1px solid var(--line);color:var(--subtle);font-size:.82rem;padding-block:26px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+
+.wa-float{position:fixed;z-index:55;left:max(20px,calc(env(safe-area-inset-left,0px) + 16px));bottom:calc(20px + env(safe-area-inset-bottom,0px));width:56px;height:56px;border-radius:50%;background:var(--wa);color:#fff;display:grid;place-items:center;box-shadow:0 10px 30px #0003;transition:transform .3s var(--ease)}
+.wa-float:hover{transform:scale(1.08)}
+.wa-float svg{width:28px;height:28px}
+
+@media (max-width:980px){
+  nav.links{display:none}
+  .hero-grid{grid-template-columns:1fr}
+  .fan{height:clamp(320px,80vw,520px);max-width:620px;width:100%;margin-inline:auto}
+  .track-line{grid-template-columns:1fr;gap:36px}
+  .track-line .rail{top:27px;bottom:27px;inset-inline:auto;right:27px;width:2px;height:auto}
+  .track-line .rail i{transform-origin:top}
+}
+@media (max-width:560px){
+  header .wrap{height:60px;gap:10px}
+  .logo{width:85px;height:32px}
+  .hide-sm{display:none}
+  .bunting{height:110px}
+  .count .num{font-size:2.6rem}
+  .collection,.steps{padding-block:72px}
+
+  .finale{padding-block:60px}
+  .finale .card{padding-block:64px 56px}
+  .sadu{width:12px}
+}
+@media (prefers-reduced-motion:reduce){
+  .flag i,.seal,.seal b,.mini-flag .cloth{animation:none}
+  .btn:hover{transform:none}
+}
+
+/* V1: the Qatar flag is raised and waves as cloth */
+.hero-flag{padding-block:40px 72px;background:radial-gradient(70% 80% at 20% 40%,#f3ede4 0,transparent 70%)}
+.flag-stage{position:relative;height:clamp(340px,40vw,560px);min-width:0;cursor:crosshair}
+.flag-stage canvas{width:100%;height:100%;display:block}
+.flag-hint{position:absolute;bottom:4px;left:8%;font-size:.78rem;color:var(--subtle)}
+@media (max-width:980px){.flag-stage{height:clamp(260px,62vw,420px);order:-1}.flag-hint{display:none}}
+
+/* version switcher (for comparing directions) */
+.switcher{position:fixed;z-index:70;left:50%;transform:translateX(-50%);bottom:calc(16px + env(safe-area-inset-bottom,0px));display:flex;align-items:center;gap:2px;background:#141210eb;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:5px;border-radius:999px;box-shadow:0 12px 30px #0004;max-width:calc(100% - 32px);overflow-x:auto;scrollbar-width:none}
+.switcher .lbl{color:#948a80;font-size:.72rem;padding:0 10px 0 6px;white-space:nowrap}
+.switcher a{color:#e9e1d6;text-decoration:none;font-family:var(--font-display);font-size:.8rem;padding:7px 13px;border-radius:999px;white-space:nowrap;transition:background .2s}
+.switcher a:hover{background:#ffffff14}
+.switcher a[aria-current]{background:var(--gold-hi);color:var(--maroon-deep);font-weight:700}
+@media (max-width:700px){.wa-float{bottom:calc(76px + env(safe-area-inset-bottom,0px))}.switcher .lbl{display:none}}
+</style>
+
+<div dir="rtl" lang="ar" class="v-flag">
+
+<header class="site">
+  <div class="wrap">
+    <a href="https://blackbear.qa" class="brand" aria-label="بلاك بير، الرئيسية"><span class="logo"><img src="img/logo.svg" alt="" width="106" height="40"></span><svg class="mini-flag" viewBox="0 0 30 40" aria-hidden="true"><rect x="1" y="2" width="1.6" height="38" rx=".8" fill="#8a6a1e"/><circle cx="1.8" cy="2" r="1.8" fill="#c89b3c"/><g class="cloth"><rect x="2.6" y="4" width="26" height="10.2" fill="#8a1538"/><polygon points="2.6,4 8.2,4 9.8,4.57 8.2,5.13 9.8,5.7 8.2,6.27 9.8,6.83 8.2,7.4 9.8,7.97 8.2,8.53 9.8,9.1 8.2,9.67 9.8,10.23 8.2,10.8 9.8,11.37 8.2,11.93 9.8,12.5 8.2,13.07 9.8,13.63 8.2,14.2 2.6,14.2" fill="#fff"/></g></svg></a>
+    <nav class="links" aria-label="القائمة الرئيسية">
+      <a href="https://blackbear.qa">المنتجات</a>
+      <a href="#top" aria-current="page">اليوم الوطني</a>
+      <a href="https://blackbear.qa">طوارئ الطباعة</a>
+      <a href="https://blackbear.qa">تتبع طلبك</a>
+      <a href="https://blackbear.qa">المساعدة</a>
+    </nav>
+    <span class="sp"></span>
+    <a class="btn btn-line btn-sm hide-sm" href="https://wa.me/97470095666">اطلب عرض سعر</a>
+    <a class="btn btn-maroon btn-sm" href="#collection">ابدأ طلبك</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero hero-flag">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow fade">اليوم الوطني لدولة قطر · 18 ديسمبر 2026</span>
+        <h1 class="h1"><span class="line"><span>قطر بقلبك؟</span></span><span class="line"><span>فرحتك كبيرة؟</span></span><span class="line"><span><em>طباعتنا بتلحقها.</em></span></span></h1>
+        <p class="lead fade">مطبوعات وهدايا اليوم الوطني بالألوان الرسمية، مع اسم شركتكم أو شعارها. اطلب أونلاين ونوصلها لبابك في كل قطر.</p>
+        <div class="cta-row fade">
+          <a class="btn btn-maroon" href="#collection">شوف المجموعة
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+          <a class="btn btn-line" href="https://wa.me/97470095666">اطلب عرض سعر</a>
+        </div>
+        <div class="count fade" aria-live="polite">
+          <span class="num" id="days">37</span>
+          <span class="lbl" id="dayslbl"><b>يوم باقي على 18 ديسمبر.</b><br>اطلب بدري عشان تلحق الكميات الكبيرة.</span>
+        </div>
+      </div>
+      <div class="flag-stage">
+        <canvas id="flagcv" role="img" aria-label="علم قطر يرتفع ويرفرف على السارية"></canvas>
+        <span class="flag-hint fade">مرّر الماوس على العلم</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="mq-track">
+      <span>أنتم ذخر الوطن <i></i></span><span class="o">قطر 2026 <i></i></span><span>18 ديسمبر <i></i></span><span class="o">بلاك بير <i></i></span>
+      <span>أنتم ذخر الوطن <i></i></span><span class="o">قطر 2026 <i></i></span><span>18 ديسمبر <i></i></span><span class="o">بلاك بير <i></i></span>
+    </div>
+  </div>
+
+  <section class="collection" id="collection">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="t">
+          <h2>مجموعة اليوم الوطني</h2>
+          <p>منتجات بألوان اليوم الوطني الرسمية والشعار المنطوق «أنتم ذخر الوطن»، وعليها اسم شركتكم أو شعارها.</p>
+        </div>
+        <a class="btn btn-maroon hide-sm" href="https://wa.me/97470095666">اطلب عرض سعر للشركات</a>
+      </div>
+      <div class="filters" role="group" aria-label="تصفية المنتجات">
+        <button type="button" id="f-all" data-f="all" aria-pressed="true">الكل</button>
+        <button type="button" id="f-wear" data-f="wear" aria-pressed="false">ملابس</button>
+        <button type="button" id="f-host" data-f="host" aria-pressed="false">ضيافة</button>
+        <button type="button" id="f-decor" data-f="decor" aria-pressed="false">زينة</button>
+      </div>
+      <div class="grid" id="grid">
+        <article class="card" data-cat="wear">
+          <div class="ph"><span class="badge"><svg viewBox="0 0 10 14" aria-hidden="true"><rect width="10" height="14" fill="#8a1538"/><polygon points="0,0 3,0 4.6,.78 3,1.56 4.6,2.33 3,3.11 4.6,3.89 3,4.67 4.6,5.44 3,6.22 4.6,7 3,7.78 4.6,8.56 3,9.33 4.6,10.11 3,10.89 4.6,11.67 3,12.44 4.6,13.22 3,14 0,14" fill="#fff"/></svg>اليوم الوطني</span><img src="img/tshirts.jpg" alt="تيشيرتان أبيض وعنابي مطبوع عليهما أنتم ذخر الوطن" loading="lazy" width="1200" height="970"></div>
+          <div class="body">
+            <h3>تيشيرت اليوم الوطني</h3>
+            <p>قطن بلونين: أبيض بطباعة عنابية، وعنابي بطباعة ذهبية. اسم شركتكم على الكم.</p>
+            <ul class="chips"><li>أبيض / عنابي</li><li>كل المقاسات</li></ul>
+            <div class="foot"><small>السعر <b>حسب الكمية</b></small><a class="btn btn-line btn-sm" href="https://wa.me/97470095666">اطلب الآن</a></div>
+          </div>
+        </article>
+        <article class="card" data-cat="host">
+          <div class="ph"><span class="badge"><svg viewBox="0 0 10 14" aria-hidden="true"><rect width="10" height="14" fill="#8a1538"/><polygon points="0,0 3,0 4.6,.78 3,1.56 4.6,2.33 3,3.11 4.6,3.89 3,4.67 4.6,5.44 3,6.22 4.6,7 3,7.78 4.6,8.56 3,9.33 4.6,10.11 3,10.89 4.6,11.67 3,12.44 4.6,13.22 3,14 0,14" fill="#fff"/></svg>اليوم الوطني</span><img src="img/bottles.jpg" alt="تعليقتا قوارير ماء عليهما قطر وأنتم ذخر الوطن" loading="lazy" width="950" height="947"></div>
+          <div class="body">
+            <h3>تعليقة قوارير المياه</h3>
+            <p>تنلبس على رقبة القارورة بدون لاصق. لركن الضيافة والفعاليات والاجتماعات.</p>
+            <ul class="chips"><li>كريمي / عنابي</li><li>قصّ حسب الشكل</li></ul>
+            <div class="foot"><small>السعر <b>حسب الكمية</b></small><a class="btn btn-line btn-sm" href="https://wa.me/97470095666">اطلب الآن</a></div>
+          </div>
+        </article>
+        <article class="card" data-cat="decor">
+          <div class="ph"><span class="badge"><svg viewBox="0 0 10 14" aria-hidden="true"><rect width="10" height="14" fill="#8a1538"/><polygon points="0,0 3,0 4.6,.78 3,1.56 4.6,2.33 3,3.11 4.6,3.89 3,4.67 4.6,5.44 3,6.22 4.6,7 3,7.78 4.6,8.56 3,9.33 4.6,10.11 3,10.89 4.6,11.67 3,12.44 4.6,13.22 3,14 0,14" fill="#fff"/></svg>اليوم الوطني</span><img src="img/bunting.jpg" alt="زينة معلّقة بأعلام ورقية عنابية وكريمية" loading="lazy" width="1536" height="1024"></div>
+          <div class="body">
+            <h3>زينة الأعلام المعلّقة</h3>
+            <p>أعلام ورقية سميكة بأطراف ذهبية وحبل جاهز للتعليق في المكتب أو الاستقبال.</p>
+            <ul class="chips"><li>تصاميم متناوبة</li><li>حبل ذهبي</li></ul>
+            <div class="foot"><small>السعر <b>حسب الكمية</b></small><a class="btn btn-line btn-sm" href="https://wa.me/97470095666">اطلب الآن</a></div>
+          </div>
+        </article>
+      </div>
+      <div class="more">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span>
+        <span><b>بدك منتج مش موجود هون؟</b> أرسل لنا فكرتك على واتساب، ونجهّزه بتصميم اليوم الوطني.</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="steps">
+    <div class="wrap">
+      <div class="head"><h2>كيف تطلب؟</h2></div>
+      <div class="track-line">
+        <span class="rail" aria-hidden="true"><i id="rail"></i></span>
+        <div class="st"><span class="dot">1</span><h3>اختر القطع والكمية</h3><p>قطعة وحدة من المجموعة أو الثلاث مع بعض.</p></div>
+        <div class="st"><span class="dot">2</span><h3>ارفع شعار شركتكم</h3><p>نضيفه على التصميم ونرسل لكم بروفة للموافقة.</p></div>
+        <div class="st"><span class="dot">3</span><h3>استلم بالوقت</h3><p>توصيل لكل قطر أو استلام من بركة العوامر.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="finale">
+    <div class="wrap">
+      <div class="card">
+        <span class="sadu r" aria-hidden="true"></span><span class="sadu l" aria-hidden="true"></span>
+        <div class="inner">
+          <img class="slogan" src="img/slogan-gold.png" alt="أنتم ذخر الوطن — حمد بن خليفة" width="387" height="165">
+          <span class="by">الشعار المنطوق لليوم الوطني 2026</span>
+          <h2>جاهزين نطبع لكم اليوم الوطني؟</h2>
+          <span class="phone">+974 7009 5666</span>
+          <div class="cta-row">
+            <a class="btn btn-gold" href="https://wa.me/97470095666">اطلب عرض سعر عبر واتساب</a>
+            <a class="btn btn-ghost-light" href="https://blackbear.qa">تصفّح كل المنتجات</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap">
+  <span>© 2026 بلاك بير للفعاليات ذ.م.م · س.ت 223416</span>
+  <span>مبنى 7، شارع 3083، منطقة 91، بركة العوامر، قطر</span>
+</div></footer>
+
+<nav class="switcher" aria-label="نسخ التصميم"><span class="lbl">نسخ التصميم</span><a href="index.html" aria-current="page">1 · العلم</a><a href="fireworks.html">2 · الاحتفال</a><a href="sadu.html">3 · السدو</a><a href="showcase.html">4 · العرض</a></nav>
+<a class="wa-float" href="https://wa.me/97470095666" aria-label="راسلنا على واتساب">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.2 1.4z"/></svg>
+</a>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  try{
+    var qa=new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Qatar'}));
+    var d=Math.round((new Date(2026,11,18)-new Date(qa.getFullYear(),qa.getMonth(),qa.getDate()))/864e5);
+    var n=document.getElementById('days'),l=document.getElementById('dayslbl');
+    if(d>0)n.textContent=d;
+    else if(d===0){n.textContent='18';l.innerHTML='<b>اليوم هو اليوم الوطني.</b><br>كل عام وقطر بخير.';}
+    else n.parentElement.hidden=true;
+  }catch(e){}
+})();
+
+
+document.querySelectorAll('.filters button').forEach(function(b){
+  b.addEventListener('click',function(){
+    var f=b.dataset.f;
+    document.querySelectorAll('.filters button').forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false');});
+    document.querySelectorAll('#grid .card').forEach(function(c){
+      var show=f==='all'||c.dataset.cat===f; c.hidden=!show;
+      if(show&&window.gsap){gsap.fromTo(c,{y:24,opacity:0},{y:0,opacity:1,duration:.5,ease:'power3.out',clearProps:'transform,opacity'});}
+    });
+    if(window.ScrollTrigger)ScrollTrigger.refresh();
+  });
+});
+
+(function(){
+  if(!window.gsap||!window.ScrollTrigger)return;
+  gsap.registerPlugin(ScrollTrigger);
+  var mm=gsap.matchMedia();
+  mm.add({motion:"(prefers-reduced-motion: no-preference)"},function(ctx){
+    var c=ctx.conditions;
+    if(!c.motion)return;
+
+    var tl=gsap.timeline({defaults:{ease:"power3.out"}});
+    tl.from(".h1 .line>span",{yPercent:115,duration:1.1,stagger:.12},.25)
+      .from(".hero .fade",{y:26,opacity:0,duration:.8,stagger:.08},.6);
+    var cnt={v:0},el=document.getElementById("days"),target=parseInt(el.textContent,10)||0;
+    gsap.to(cnt,{v:target,duration:1.6,delay:.9,ease:"power2.out",onUpdate:function(){el.textContent=Math.round(cnt.v);}});
+
+    var mq=gsap.to(".mq-track",{xPercent:-50,repeat:-1,duration:26,ease:"none"});
+    ScrollTrigger.create({trigger:".marquee",start:"top bottom",end:"bottom top",onUpdate:function(s){
+      var v=gsap.utils.clamp(-6,6,s.getVelocity()/300), dir=s.direction>0?1:-1;
+      gsap.to(mq,{timeScale:dir*(1+Math.abs(v)),duration:.3,overwrite:true});
+      gsap.to(mq,{timeScale:dir,duration:1.2,delay:.3});
+    }});
+
+    gsap.from(".collection .sec-head>*",{y:40,opacity:0,stagger:.1,duration:.9,ease:"power3.out",scrollTrigger:{trigger:".collection",start:"top 80%"}});
+    gsap.from(".filters button",{y:16,opacity:0,stagger:.05,duration:.6,ease:"power3.out",scrollTrigger:{trigger:".filters",start:"top 88%"}});
+    ScrollTrigger.batch("#grid .card",{start:"top 88%",once:true,onEnter:function(els){gsap.from(els,{y:60,opacity:0,stagger:.12,duration:.9,ease:"power3.out",clearProps:"transform,opacity"});}});
+    gsap.utils.toArray(".card .ph img").forEach(function(im){gsap.fromTo(im,{yPercent:-6,scale:1.12},{yPercent:6,scale:1.12,ease:"none",scrollTrigger:{trigger:im.closest(".card"),start:"top bottom",end:"bottom top",scrub:true}});});
+    gsap.from(".more",{y:24,opacity:0,duration:.8,ease:"power3.out",scrollTrigger:{trigger:".more",start:"top 92%"}});
+
+    gsap.fromTo("#rail",{scaleX:0,scaleY:0},{scaleX:1,scaleY:1,ease:"none",scrollTrigger:{trigger:".track-line",start:"top 75%",end:"bottom 55%",scrub:.6}});
+    gsap.from(".st",{y:40,opacity:0,stagger:.18,duration:.9,ease:"power3.out",scrollTrigger:{trigger:".track-line",start:"top 78%"}});
+    gsap.from(".st .dot",{scale:0,stagger:.18,duration:.8,ease:"back.out(2.4)",scrollTrigger:{trigger:".track-line",start:"top 78%"}});
+
+    gsap.from(".finale .card",{scale:.92,borderRadius:"60px",ease:"none",scrollTrigger:{trigger:".finale",start:"top bottom",end:"top 30%",scrub:.6}});
+    gsap.from(".finale .slogan",{scale:.6,opacity:0,filter:"blur(12px)",ease:"none",scrollTrigger:{trigger:".finale",start:"top 80%",end:"top 20%",scrub:.6}});
+    gsap.from(".finale .inner>*:not(.slogan)",{y:30,opacity:0,stagger:.08,duration:.8,ease:"power3.out",scrollTrigger:{trigger:".finale",start:"top 40%"}});
+    gsap.fromTo(".sadu",{backgroundPositionY:"0px"},{backgroundPositionY:"-300px",ease:"none",scrollTrigger:{trigger:".finale",start:"top bottom",end:"bottom top",scrub:true}});
+  });
+  window.addEventListener("load",function(){ScrollTrigger.refresh();});
+})();
+</script>
+<script>
+(function(){
+  var cv=document.getElementById('flagcv'); if(!cv) return;
+  var ctx=cv.getContext('2d'), reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var FW=840, FH=330, src=document.createElement('canvas'); src.width=FW; src.height=FH;
+  var s=src.getContext('2d'); s.fillStyle='#8A1538'; s.fillRect(0,0,FW,FH); s.fillStyle='#fff';
+  var base=FW*0.235, tip=FW*0.31; s.beginPath(); s.moveTo(0,0); s.lineTo(base,0);
+  for(var i=0;i<9;i++){var y0=i*FH/9; s.lineTo(tip,y0+FH/18); s.lineTo(base,y0+FH/9);} s.lineTo(0,FH); s.closePath(); s.fill();
+  var W=0,H=0,t=0,gust=.3,raise=reduce?1:0,last=performance.now(),running=true;
+  function size(){var r=cv.getBoundingClientRect(),d=Math.min(2,window.devicePixelRatio||1);cv.width=Math.round(r.width*d);cv.height=Math.round(r.height*d);ctx.setTransform(d,0,0,d,0,0);W=r.width;H=r.height;}
+  size(); window.addEventListener('resize',size);
+  cv.addEventListener('pointermove',function(){gust=Math.min(1.6,gust+.08);});
+  cv.addEventListener('pointerdown',function(){gust=1.8;});
+  var lastY=scrollY; window.addEventListener('scroll',function(){gust=Math.min(1.6,gust+Math.abs(scrollY-lastY)/400);lastY=scrollY;},{passive:true});
+  function ease(x){return 1-Math.pow(1-x,3);}
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    var poleX=Math.max(14,W*0.07), fw=Math.min(W*0.84,(H*0.6)*28/11), fh=fw*11/28;
+    var topFinal=H*0.07+8, topStart=H-fh-12, top=topStart+(topFinal-topStart)*ease(raise);
+    var g=ctx.createLinearGradient(poleX-5,0,poleX+5,0); g.addColorStop(0,'#8a6a1e'); g.addColorStop(.5,'#f3e4be'); g.addColorStop(1,'#a8822e');
+    ctx.fillStyle=g; ctx.fillRect(poleX-4,H*0.07,8,H*0.93);
+    ctx.beginPath(); ctx.arc(poleX,H*0.07,8,0,Math.PI*2); ctx.fillStyle='#c89b3c'; ctx.fill();
+    ctx.fillStyle='#1c141018'; ctx.beginPath(); ctx.ellipse(poleX,H-3,34,5,0,0,Math.PI*2); ctx.fill();
+    var n=Math.ceil(fw/2), sw=fw/n;
+    for(var i=0;i<n;i++){
+      var u=i/n, x=poleX+4+u*fw, amp=(fh*0.1+gust*fh*0.08)*Math.pow(u,0.85);
+      var ph=t*2.4-u*7.2, dy=Math.sin(ph)*amp+Math.sin(ph*0.47+1.3)*amp*0.45;
+      ctx.drawImage(src,u*FW,0,FW/n+0.6,FH,x,top+dy,sw+0.9,fh);
+      var sh=Math.cos(ph)*0.26*Math.min(1,u*4);
+      ctx.fillStyle=sh>0?'rgba(255,255,255,'+(sh*0.5)+')':'rgba(20,0,8,'+(-sh)+')';
+      ctx.fillRect(x,top+dy,sw+0.9,fh);
+    }
+  }
+  function loop(now){
+    var dt=Math.min(.05,(now-last)/1000); last=now;
+    if(!reduce){t+=dt*(1+gust*0.9); gust+=(.3-gust)*dt*0.8; if(raise<1) raise=Math.min(1,raise+dt/2.2);}
+    draw(); if(running && !reduce) requestAnimationFrame(loop);
+  }
+  if('IntersectionObserver' in window){new IntersectionObserver(function(e){var v=e[0].isIntersecting; if(v&&!running&&!reduce){running=true;last=performance.now();requestAnimationFrame(loop);} running=v;}).observe(cv);}
+  requestAnimationFrame(loop);
+})();
+</script>
+
+</body></html>
