@@ -133,9 +133,9 @@
   setTimeout(function () { launch(W * 0.7, H * 0.22); launch(W * 0.35, H * 0.16); start(); }, 400);
 })();
 </script><script>
-/* National Day: the hero bear waves the Qatar flag. A 5-second video (its white backdrop baked to
-   the page's beige) plays once when the bear comes into view and rests on its last frame; it plays
-   again on hover or tap. Nothing loops (WCAG 2.2.2). Phones: iOS does not preload, so play() is
+/* National Day: the hero bear waves the Qatar flag. A seamless 5-second video (its white backdrop
+   baked to the page's beige) loops while the bear is on screen. The site's own «إيقاف حركة الدب»
+   button stops and restarts it (WCAG 2.2.2). Phones: iOS does not preload, so play() is
    called directly; if autoplay is blocked (low-power mode), the first touch or scroll starts it.
    Under reduced motion the still photo stays. */
 (function () {
@@ -145,7 +145,7 @@
   var fig = img.parentNode;
   var v = document.createElement('video');
   v.className = 'nd-bear-video';
-  v.muted = true; v.defaultMuted = true; v.playsInline = true; v.preload = 'auto';
+  v.loop = true; v.muted = true; v.defaultMuted = true; v.playsInline = true; v.preload = 'auto';
   v.setAttribute('muted', ''); v.setAttribute('playsinline', ''); v.setAttribute('webkit-playsinline', '');
   v.setAttribute('aria-hidden', 'true');
   v.poster = img.currentSrc || img.src;
@@ -163,9 +163,9 @@
   v.addEventListener('playing', function () { fig.classList.add('nd-video-on'); });
 
   var blocked = false;
+  var stopped = false, inView = false;
   function play() {
-    if (!v.paused && !v.ended) return;
-    if (v.ended) v.currentTime = 0;
+    if (stopped || !v.paused) return;
     var p = v.play();
     if (p && p.catch) p.catch(function () { blocked = true; });
   }
@@ -174,7 +174,9 @@
   function start() { if (!started) { started = true; play(); } }
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (e) {
-      if (e[0].isIntersecting) { io.disconnect(); start(); }
+      inView = e[0].isIntersecting;
+      if (inView) start(); else if (started) v.pause();
+      if (inView && started) play();
     }, { threshold: 0.5 });
     io.observe(fig);
   } else { start(); }
@@ -188,7 +190,16 @@
   window.addEventListener('touchstart', firstGesture, { passive: true });
   window.addEventListener('pointerdown', firstGesture);
   window.addEventListener('scroll', function () { if (blocked) play(); }, { passive: true });
-  fig.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') play(); });
-  fig.addEventListener('click', play);
+  document.addEventListener('visibilitychange', function () { if (document.hidden) v.pause(); else if (inView) play(); });
+  /* the site's pause button under the bear */
+  var btn = document.querySelector('section[class*="Hero-module"] [data-bear-pause]');
+  if (btn) {
+    btn.addEventListener('click', function () {
+      stopped = !stopped;
+      btn.setAttribute('aria-pressed', stopped ? 'true' : 'false');
+      btn.textContent = stopped ? 'تشغيل حركة الدب' : 'إيقاف حركة الدب';
+      if (stopped) v.pause(); else play();
+    });
+  }
 })();
 </script></body></html>
