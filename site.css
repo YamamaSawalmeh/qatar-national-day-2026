@@ -1153,25 +1153,37 @@ html[data-bear="quiet"] .Bear-module__ENTIHG__fallback { display: contents; }
   .page-module__pswZNq__countNum { font-size: 2.5rem; }
 }
 
-/* ─── National Day: waving flag hero (replaces the fireworks) ─── */
-.nd-flaghero{background:#1a0609}
-.nd-flaghero::before{display:none}
-.nd-flag{position:absolute;inset:0;z-index:-2;overflow:hidden}
-.nd-flag img{inline-size:100%;block-size:100%;object-fit:cover;object-position:left 22%}
-.nd-flag-gl{position:absolute;inset:0;inline-size:100%;block-size:100%;opacity:0;transition:opacity .4s}
-.nd-flag-gl.is-on{opacity:1}
-.nd-flaghero .nd-flag-motion{inset-block:20px auto;inset-inline:auto max(16px,4vw)}
-.nd-scrim{position:absolute;inset:0;z-index:-1;pointer-events:none;
-  background:linear-gradient(to left,rgba(26,6,9,.88) 0%,rgba(26,6,9,.62) 36%,rgba(26,6,9,0) 62%),
-             linear-gradient(to top,rgba(74,16,25,.55) 0%,rgba(74,16,25,0) 30%)}
-.nd-flaghero .page-module__pswZNq__nightInner{padding-block:var(--space-11) var(--space-11)}
+/* ─── National Day: the cloth flag (WebGL) over the hero's own night gradient ─── */
+.nd-stage{position:absolute;z-index:0;inset-block:9% 12%;inset-inline-end:max(16px,3vw);inline-size:min(48vw,700px);pointer-events:none}
+.nd-stage canvas{position:absolute;inset:0;inline-size:100%;block-size:100%}
+.nd-pole{position:absolute;left:14px;top:4%;inline-size:10px;block-size:200vh;border-radius:5px;
+  background:linear-gradient(90deg,#8a6a1e 0%,#f3e4be 45%,#c89b3c 60%,#7a5a1a 100%);box-shadow:0 0 18px rgba(200,155,60,.25)}
+.nd-pole::before{content:"";position:absolute;inset-inline-start:50%;top:-14px;inline-size:20px;block-size:20px;margin-inline-start:-10px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,#fff3cf 0,#d9b76a 35%,#8a6a1e 100%)}
+.nd-flat{position:absolute;left:24px;top:10%;inline-size:80%;block-size:auto;filter:drop-shadow(0 20px 30px rgba(0,0,0,.35))}
+.nd-stage.is-gl .nd-flat{display:none}
+.nd-flaghero .nd-flag-motion{inset-block:16px auto;inset-inline:auto max(16px,3vw)}
+.nd-flaghero .page-module__pswZNq__nightInner{padding-block:var(--space-11)}
 .nd-flaghero .page-module__pswZNq__subtitle{max-inline-size:32rem}
-@media (max-width:767.98px){
-  .nd-flaghero{min-block-size:0;justify-content:flex-start;background:linear-gradient(180deg,#1a0609 0%,#2a0810 45%,#4a1019 100%)}
-  .nd-flag{inset:0 0 auto;block-size:auto}
-  .nd-flag{-webkit-mask-image:linear-gradient(to bottom,#000 62%,transparent 96%);mask-image:linear-gradient(to bottom,#000 62%,transparent 96%)}
-  .nd-flag img{block-size:auto;aspect-ratio:928/1152;object-position:left top}
-  .nd-flaghero .nd-flag-motion{inset-inline:max(16px,4vw) auto}
-  .nd-scrim{background:linear-gradient(to top,#4a1019 0%,rgba(42,8,16,.92) 34%,rgba(26,6,9,0) 58%)}
-  .nd-flaghero .page-module__pswZNq__nightInner{padding-block:calc(100vw * .74) var(--space-9)}
+@media (max-width:1023.98px){
+  .nd-flaghero{justify-content:flex-start}
+  .nd-stage{inset:12px 0 auto 0;inline-size:auto;block-size:min(64vw,440px);
+    -webkit-mask-image:linear-gradient(to bottom,#000 80%,transparent);mask-image:linear-gradient(to bottom,#000 80%,transparent)}
+  .nd-flaghero .page-module__pswZNq__nightInner{padding-block:calc(min(64vw,440px) + 52px) var(--space-9)}
+  .nd-flaghero .nd-flag-motion{inset-block:calc(min(64vw,440px) + 4px) auto}
 }
+
+/* ─── Bunting hanging from the slogan band, swayed by the scroll ─── */
+.nd-bandwrap{position:relative;z-index:2;margin-block-end:56px}
+.nd-bunting{position:absolute;inset-inline:0;top:100%;block-size:72px;pointer-events:none;overflow:hidden}
+.nd-rope{position:absolute;inset:-2px 0 auto;inline-size:100%;block-size:28px}
+.nd-pennants{position:absolute;inset:0 1% auto;display:flex;justify-content:space-between}
+.nd-pennant{position:relative;inline-size:clamp(22px,3.2vw,40px);aspect-ratio:3/4;transform-origin:50% 0;margin-top:calc(14px * var(--sag,0))}
+.nd-pennant i{position:absolute;inset:0;background:var(--gold-500);clip-path:polygon(0 0,100% 0,100% 100%,50% 76%,0 100%)}
+.nd-pennant i::before{content:"";position:absolute;inset:2px 2px 3px;clip-path:polygon(0 0,100% 0,100% 100%,50% 76%,0 100%)}
+.nd-pennant.m i::before{background:var(--maroon-600)}
+.nd-pennant.c i::before{background:#faf7f2}
+.nd-pennant i::after{content:"";position:absolute;inline-size:20%;aspect-ratio:1;left:40%;top:30%;transform:rotate(45deg);background:var(--gold-500)}
+@media (max-width:767.98px){.nd-pennant:nth-child(2n){display:none}}
+
+.nd-confetti{position:absolute;inset:0;inline-size:100%;block-size:100%;pointer-events:none;z-index:3}
