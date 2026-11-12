@@ -1153,25 +1153,38 @@ html[data-bear="quiet"] .Bear-module__ENTIHG__fallback { display: contents; }
   .page-module__pswZNq__countNum { font-size: 2.5rem; }
 }
 
-/* ─── National Day: the cloth flag (WebGL) over the hero's own night gradient ─── */
-.nd-stage{position:absolute;z-index:0;inset-block:9% 12%;inset-inline-end:max(16px,3vw);inline-size:min(48vw,700px);pointer-events:none}
-.nd-stage canvas{position:absolute;inset:0;inline-size:100%;block-size:100%}
-.nd-pole{position:absolute;left:14px;top:4%;inline-size:10px;block-size:200vh;border-radius:5px;
-  background:linear-gradient(90deg,#8a6a1e 0%,#f3e4be 45%,#c89b3c 60%,#7a5a1a 100%);box-shadow:0 0 18px rgba(200,155,60,.25)}
-.nd-pole::before{content:"";position:absolute;inset-inline-start:50%;top:-14px;inline-size:20px;block-size:20px;margin-inline-start:-10px;border-radius:50%;
-  background:radial-gradient(circle at 35% 30%,#fff3cf 0,#d9b76a 35%,#8a6a1e 100%)}
-.nd-flat{position:absolute;left:24px;top:10%;inline-size:80%;block-size:auto;filter:drop-shadow(0 20px 30px rgba(0,0,0,.35))}
-.nd-stage.is-gl .nd-flat{display:none}
+/* ─── National Day: the generated flag photo is the hero background (no colour seams) ─── */
+.nd-flaghero{background:#3b0b14 url(img/flag-desktop-tail.png) 0 0/100% 100% no-repeat}
+.nd-flaghero::before{display:none}
+.nd-photo{position:absolute;inset:0;z-index:-2;overflow:hidden}
+.nd-photo picture,.nd-photo img{display:block;inline-size:100%;block-size:100%}
+.nd-photo img{object-fit:cover;object-position:0% 22%}
+.nd-photo canvas{position:absolute;inset:0;inline-size:100%;block-size:100%}
+.nd-photo.is-gl img{visibility:hidden}
+.nd-scrim{position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:linear-gradient(to left,rgba(18,5,9,.86) 0%,rgba(18,5,9,.62) 34%,rgba(18,5,9,0) 60%)}
 .nd-flaghero .nd-flag-motion{inset-block:16px auto;inset-inline:auto max(16px,3vw)}
 .nd-flaghero .page-module__pswZNq__nightInner{padding-block:var(--space-11)}
 .nd-flaghero .page-module__pswZNq__subtitle{max-inline-size:32rem}
+/* tablet: the wide photo on top at full width, its bottom row continues the background */
 @media (max-width:1023.98px){
   .nd-flaghero{justify-content:flex-start}
-  .nd-stage{inset:12px 0 auto 0;inline-size:auto;block-size:min(64vw,440px);
-    -webkit-mask-image:linear-gradient(to bottom,#000 80%,transparent);mask-image:linear-gradient(to bottom,#000 80%,transparent)}
-  .nd-flaghero .page-module__pswZNq__nightInner{padding-block:calc(min(64vw,440px) + 52px) var(--space-9)}
-  .nd-flaghero .nd-flag-motion{inset-block:calc(min(64vw,440px) + 4px) auto}
+  .nd-photo{inset:0 0 auto;block-size:auto;aspect-ratio:1376/768;-webkit-mask-image:linear-gradient(to bottom,#000 78%,transparent 99%);mask-image:linear-gradient(to bottom,#000 78%,transparent 99%)}
+  .nd-photo img{object-position:0% 0%}
+  .nd-scrim{display:none}
+  .nd-flaghero .page-module__pswZNq__nightInner{padding-block:calc(100vw * 768 / 1376 * .84 + 52px) var(--space-9)}
+  .nd-flaghero .nd-flag-motion{inset-block:calc(100vw * 768 / 1376 * .84) auto}
 }
+/* phone: the tall photo on top */
+@media (max-width:767.98px){
+  .nd-flaghero{background-image:url(img/flag-mobile-tail.png)}
+  .nd-photo{aspect-ratio:928/1152}
+  .nd-flaghero .page-module__pswZNq__nightInner{padding-block:calc(100vw * 1152 / 928 * .57 + 48px) var(--space-9)}
+  .nd-flaghero .nd-flag-motion{inset-block:calc(100vw * 1152 / 928 * .56) auto}
+}
+
+/* filters: the site's cells are display:flex, so a hidden cell needs this */
+#collection [data-cat][hidden]{display:none!important}
 
 /* ─── Bunting hanging from the slogan band, swayed by the scroll ─── */
 .nd-bandwrap{position:relative;z-index:2;margin-block-end:56px}
