@@ -133,127 +133,126 @@
   setTimeout(function () { launch(W * 0.7, H * 0.22); launch(W * 0.35, H * 0.16); start(); }, 400);
 })();
 </script><script>
-/* National Day: the hero bear holds the Qatar flag (official drawing, 11:28, nine points) as lit
-   satin in WebGL. The flag waves for about five seconds after the page opens, then settles; it
-   waves again when the bear is hovered or tapped and while the page scrolls (WCAG 2.2.2: no motion
-   runs longer than five seconds on its own). Under reduced motion it stays still. */
+/* National Day: the hero bear holds the Qatar flag. The flag is the generated satin-flag photo,
+   cut out; its gold pole runs up behind the bear's raised palm, so the paw holds it. The cloth
+   waves in WebGL for about four seconds after the page opens, then settles; it waves again on
+   hover, tap or scroll (no motion runs longer than five seconds on its own). Still under reduced
+   motion; without WebGL the photo shows as is. */
 (function () {
   'use strict';
   var fig = document.querySelector('section[class*="Hero-module"] [data-bear-figure]');
-  var img = fig && fig.querySelector('img');
-  if (!fig || !img) return;
-  /* Positions are in the 680 x 692 bear artwork's pixels. */
-  var ART_W = 680, ART_H = 692, POLE_X = 549, POLE_TOP = -4, POLE_BOTTOM = 262;
-  var FLAG_L = 236, BOX = { x: 538, y: -40, w: 340, h: 240 };
+  if (!fig || !fig.querySelector('img')) return;
+  /* positions in the 680 x 692 bear artwork's pixels */
+  var ART_W = 680, ART_H = 692;
+  var POLE_X = 524, POLE_TOP = -18, POLE_BOTTOM = 268;
+  var FLAG_W = 236, FLAG_TOP = -8;               /* the cloth hangs from just under the finial */
+  var IMG_W = 600, IMG_H = 415;
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var pct = function (v, of) { return (v / of * 100) + '%'; };
 
   var pole = document.createElement('span');
   pole.className = 'nd-bear-pole';
   pole.setAttribute('aria-hidden', 'true');
-  pole.style.left = ((POLE_X - 4) / ART_W * 100) + '%';
-  pole.style.top = (POLE_TOP / ART_H * 100) + '%';
-  pole.style.height = ((POLE_BOTTOM - POLE_TOP) / ART_H * 100) + '%';
-  pole.style.width = (8 / ART_W * 100) + '%';
+  pole.style.left = pct(POLE_X - 4, ART_W);
+  pole.style.top = pct(POLE_TOP, ART_H);
+  pole.style.height = pct(POLE_BOTTOM - POLE_TOP, ART_H);
+  pole.style.width = pct(8, ART_W);
   fig.appendChild(pole);
 
-  var cv = document.createElement('canvas');
-  cv.className = 'nd-bear-flag';
-  cv.setAttribute('aria-hidden', 'true');
-  cv.style.left = (BOX.x / ART_W * 100) + '%';
-  cv.style.top = (BOX.y / ART_H * 100) + '%';
-  cv.style.width = (BOX.w / ART_W * 100) + '%';
-  cv.style.height = (BOX.h / ART_H * 100) + '%';
-  fig.appendChild(cv);
+  var wrap = document.createElement('span');
+  wrap.className = 'nd-bear-flag';
+  wrap.setAttribute('aria-hidden', 'true');
+  wrap.style.left = pct(POLE_X + 3, ART_W);
+  wrap.style.top = pct(FLAG_TOP, ART_H);
+  wrap.style.width = pct(FLAG_W, ART_W);
+  var still = new Image();
+  still.src = 'img/flag-cut.png'; still.alt = '';
+  wrap.appendChild(still);
+  fig.appendChild(wrap);
   fig.classList.add('nd-has-flag');
 
-  var gl = cv.getContext('webgl', { antialias: true, alpha: true, premultipliedAlpha: true });
-  if (!gl) { cv.remove(); pole.remove(); return; }
-  var VS =
-    'attribute vec2 a;uniform float t,amp;uniform vec2 res,org,sz;varying vec2 vUv;varying vec3 vN;' +
-    'vec3 P(vec2 q){float u=q.x,v=q.y;float k=pow(u,1.05)*amp;' +
-    'float ph=u*6.4-t*3.0+v*1.1;float ph2=u*12.5-t*3.7-v*1.9;' +
-    'float z=k*sz.y*(.48*sin(ph)+.15*sin(ph2))+pow(u,1.05)*sz.y*.10*sin(u*5.+1.);' +
-    'float dy=k*sz.y*(.17*sin(ph*.8+.9)+.06*sin(ph2*.7))+u*u*sz.y*(.10-.05*amp);' +
-    'float dx=-k*sz.x*.045*(.5-.5*cos(ph));' +
-    'return vec3(org.x+u*sz.x+dx+z*.16,org.y+v*sz.y+dy-z*.08,z);}' +
-    'void main(){vec3 p=P(a);vec3 du=P(a+vec2(.004,0.))-p;vec3 dv=P(a+vec2(0.,.004))-p;' +
-    'vec3 n=normalize(cross(du,dv));if(n.z<0.)n=-n;vN=n;vUv=a;' +
-    'gl_Position=vec4(p.x/res.x*2.-1.,1.-p.y/res.y*2.,0.,1.);}';
+  /* keep the fly end on screen: narrow screens get a smaller flag */
+  function fit() {
+    wrap.style.width = pct(FLAG_W, ART_W);
+    var r = wrap.getBoundingClientRect(), room = document.documentElement.clientWidth - 8 - r.left;
+    if (r.width > room && room > 40) wrap.style.width = (room / fig.getBoundingClientRect().width * 100) + '%';
+  }
+  fit();
+  window.addEventListener('resize', fit);
+  if (reduce) return;
+
+  var cv = document.createElement('canvas');
+  var gl = cv.getContext('webgl', { alpha: true, premultipliedAlpha: false, antialias: false });
+  if (!gl) return;
+  var VS = 'attribute vec2 p;varying vec2 uv;void main(){uv=vec2(p.x*.5+.5,.5-p.y*.5);gl_Position=vec4(p,0.,1.);}';
   var FS =
-    'precision mediump float;varying vec2 vUv;varying vec3 vN;' +
-    'void main(){float tri=1.-abs(fract(vUv.y*9.)*2.-1.);float e=.300+.085*tri;' +
-    'float m=smoothstep(e-.003,e+.003,vUv.x);' +
-    'vec3 base=mix(vec3(.96,.95,.92),vec3(.56,.085,.225),m);' +
-    'vec3 N=normalize(vN);vec3 L=normalize(vec3(.35,-.35,.87));' +
-    'float d=max(dot(N,L),0.);vec3 H=normalize(L+vec3(0.,0.,1.));float sp=pow(max(dot(N,H),0.),48.);' +
-    'vec3 c=base*(.42+.56*d)+sp*mix(vec3(.16),vec3(.20,.12,.10),m);' +
-    'float rim=pow(1.-clamp(N.z,0.,1.),3.);c+=rim*vec3(.55,.38,.14)*.3;' +
-    'gl_FragColor=vec4(c,1.);}';
+    'precision mediump float;varying vec2 uv;uniform sampler2D tex;uniform float t,amp;uniform vec2 pad;' +
+    'void main(){vec2 q=(uv-pad)/(1.-2.*pad);float k=smoothstep(0.,1.,clamp(q.x,0.,1.))*amp;' +
+    'float ph=q.x*11.-t*3.1+q.y*2.;float ph2=q.x*19.-t*4.2-q.y*3.;' +
+    'vec2 o=vec2(.006*cos(ph),.035*sin(ph)+.012*sin(ph2))*k;' +
+    'vec2 s=q-o;vec4 c=(s.x<0.||s.x>1.||s.y<0.||s.y>1.)?vec4(0.):texture2D(tex,s);' +
+    'c.rgb*=1.+.14*k*cos(ph-.6);gl_FragColor=c;}';
   function sh(type, src) { var x = gl.createShader(type); gl.shaderSource(x, src); gl.compileShader(x); return x; }
   var pr = gl.createProgram();
   gl.attachShader(pr, sh(gl.VERTEX_SHADER, VS));
   gl.attachShader(pr, sh(gl.FRAGMENT_SHADER, FS));
   gl.linkProgram(pr);
-  if (!gl.getProgramParameter(pr, gl.LINK_STATUS)) { cv.remove(); pole.remove(); return; }
+  if (!gl.getProgramParameter(pr, gl.LINK_STATUS)) return;
   gl.useProgram(pr);
-  var NU = 70, NV = 26, verts = [], idx = [], i, j;
-  for (j = 0; j <= NV; j++) for (i = 0; i <= NU; i++) verts.push(i / NU, j / NV);
-  for (j = 0; j < NV; j++) for (i = 0; i < NU; i++) {
-    var p0 = j * (NU + 1) + i, p1 = p0 + 1, p2 = p0 + NU + 1, p3 = p2 + 1;
-    idx.push(p0, p2, p1, p1, p2, p3);
-  }
   gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
-  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(verts), gl.STATIC_DRAW);
-  gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, gl.createBuffer());
-  gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(idx), gl.STATIC_DRAW);
-  var loc = gl.getAttribLocation(pr, 'a');
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
+  var loc = gl.getAttribLocation(pr, 'p');
   gl.enableVertexAttribArray(loc);
   gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
   var U = {};
-  ['t', 'amp', 'res', 'org', 'sz'].forEach(function (n) { U[n] = gl.getUniformLocation(pr, n); });
+  ['t', 'amp', 'pad'].forEach(function (n) { U[n] = gl.getUniformLocation(pr, n); });
+  gl.uniform2f(U.pad, 0, 0.06);
+  gl.enable(gl.BLEND);
+  gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
 
+  var t = 0.6, amp = 0, until = 0, raf = 0, last = 0, ready = false;
   function size() {
-    var r = cv.getBoundingClientRect(), k = Math.min(2, window.devicePixelRatio || 1);
-    if (!r.width) return;
-    cv.width = Math.round(r.width * k); cv.height = Math.round(r.height * k);
+    var r = wrap.getBoundingClientRect(), k = Math.min(2, window.devicePixelRatio || 1);
+    cv.width = Math.max(1, Math.round(r.width * k));
+    cv.height = Math.max(1, Math.round(r.width * IMG_H / IMG_W / 0.88 * k));
     gl.viewport(0, 0, cv.width, cv.height);
-    var s = r.width / BOX.w;
-    /* keep the fly end on screen: a narrow screen gets a shorter flag */
-    var poleLeft = r.left + (POLE_X + 3 - BOX.x) * s;
-    var room = (document.documentElement.clientWidth - 10 - poleLeft) / s / 1.12;
-    var L = Math.max(120, Math.min(FLAG_L, room));
-    gl.uniform2f(U.res, r.width, r.height);
-    gl.uniform2f(U.org, (POLE_X + 3 - BOX.x) * s, (POLE_TOP + 10 - BOX.y) * s);
-    gl.uniform2f(U.sz, L * s, L * 11 / 28 * s);
   }
-
-  var t = 0.8, amp = reduce ? 0.12 : 1, until = 0, raf = 0, last = 0;
   function draw() {
+    if (!ready) return;
     gl.clearColor(0, 0, 0, 0); gl.clear(gl.COLOR_BUFFER_BIT);
     gl.uniform1f(U.t, t); gl.uniform1f(U.amp, amp);
-    gl.drawElements(gl.TRIANGLES, idx.length, gl.UNSIGNED_SHORT, 0);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
   }
   function frame(now) {
     raf = 0;
     var dt = last ? Math.min(0.05, (now - last) / 1000) : 0; last = now;
-    var target = now < until ? 1 : 0.12;
-    amp += (target - amp) * Math.min(1, dt * (target > amp ? 4 : 1.2));
-    t += dt * (0.35 + 0.65 * amp);
+    var target = now < until ? 1 : 0;
+    amp += (target - amp) * Math.min(1, dt * (target > amp ? 3.5 : 1.4));
+    t += dt;
     draw();
-    if (now < until || amp > 0.13) raf = requestAnimationFrame(frame); else last = 0;
+    if (now < until || amp > 0.01) raf = requestAnimationFrame(frame); else { last = 0; amp = 0; draw(); }
   }
-  function wave(ms) {
-    if (reduce) return;
-    until = Math.max(until, performance.now() + ms);
-    if (!raf) raf = requestAnimationFrame(frame);
-  }
-  size(); draw();
-  window.addEventListener('resize', function () { size(); draw(); });
-  if (!reduce) {
+  function wave(ms) { until = Math.max(until, performance.now() + ms); if (!raf) raf = requestAnimationFrame(frame); }
+
+  var im = new Image();
+  im.onload = function () {
+    var tex = gl.createTexture();
+    gl.bindTexture(gl.TEXTURE_2D, tex);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, im);
+    ready = true;
+    wrap.appendChild(cv);
+    wrap.classList.add('is-gl');
+    size(); draw();
     wave(4200);
-    fig.addEventListener('pointerenter', function () { wave(3000); });
-    fig.addEventListener('click', function () { wave(3000); });
-    window.addEventListener('scroll', function () { if (window.scrollY < window.innerHeight) wave(900); }, { passive: true });
-  }
+  };
+  im.src = still.src;
+  window.addEventListener('resize', function () { size(); draw(); });
+  fig.addEventListener('pointerenter', function () { wave(3000); });
+  fig.addEventListener('click', function () { wave(3000); });
+  window.addEventListener('scroll', function () { if (window.scrollY < window.innerHeight) wave(900); }, { passive: true });
 })();
 </script></body></html>

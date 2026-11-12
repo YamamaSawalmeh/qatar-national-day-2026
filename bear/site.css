@@ -1237,6 +1237,9 @@ html[data-bear="quiet"] .Bear-module__ENTIHG__fallback { display: contents; }
 /* National Day: the flag in the bear's raised paw */
 [data-bear-figure].nd-has-flag{overflow:visible}
 [data-bear-figure].nd-has-flag img{position:relative;z-index:2}
-.nd-bear-pole{position:absolute;z-index:1;border-radius:99px;background:linear-gradient(90deg,#7a5a1a 0%,#f3e4be 45%,#c89b3c 62%,#6e5016 100%);pointer-events:none}
+.nd-bear-pole{position:absolute;z-index:1;box-shadow:1px 0 2px rgba(0,0,0,.25);border-radius:99px;background:linear-gradient(90deg,#7a5a1a 0%,#f3e4be 45%,#c89b3c 62%,#6e5016 100%);pointer-events:none}
 .nd-bear-pole::before{content:"";position:absolute;left:50%;top:0;width:260%;aspect-ratio:1;transform:translate(-50%,-70%);border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff3cf 0,#d9b76a 40%,#8a6a1e 100%)}
-.nd-bear-flag{position:absolute;z-index:3;pointer-events:none}
+.nd-bear-flag{position:absolute;z-index:3;pointer-events:none;display:block}
+.nd-bear-flag img{display:block;width:100%;height:auto;filter:drop-shadow(0 10px 14px rgba(28,20,16,.22))}
+.nd-bear-flag canvas{position:absolute;left:0;top:-6.8%;width:100%;height:auto;aspect-ratio:600/(415/.88);filter:drop-shadow(0 10px 14px rgba(28,20,16,.22))}
+.nd-bear-flag.is-gl img{visibility:hidden}
