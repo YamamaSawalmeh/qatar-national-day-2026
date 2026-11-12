@@ -1234,6 +1234,6 @@ html[data-bear="quiet"] .Bear-module__ENTIHG__fallback { display: contents; }
   .page-module__-iEktq__grid { margin-block-start: var(--space-6); }
 }
 
-/* National Day: the bear holding the flag (transparent PNG); the flag area waves */
-.nd-bear-wave{position:absolute;pointer-events:none;z-index:2;max-width:none}
-[data-bear-figure].nd-waving img{visibility:hidden}
+/* National Day: the bear waving the flag (video, white baked to the page beige) */
+.nd-bear-video{position:absolute;pointer-events:none;z-index:2;max-width:none;object-fit:contain;background:transparent}
+[data-bear-figure].nd-video-on img{visibility:hidden}
