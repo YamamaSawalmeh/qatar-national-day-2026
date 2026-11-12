@@ -134,8 +134,10 @@
 })();
 </script><script>
 /* National Day: the hero bear waves the Qatar flag. A 5-second video (its white backdrop baked to
-   the page's beige) plays once when the page opens and rests on its last frame; it plays again on
-   hover or tap. Nothing loops (WCAG 2.2.2). Under reduced motion the still photo stays. */
+   the page's beige) plays once when the bear comes into view and rests on its last frame; it plays
+   again on hover or tap. Nothing loops (WCAG 2.2.2). Phones: iOS does not preload, so play() is
+   called directly; if autoplay is blocked (low-power mode), the first touch or scroll starts it.
+   Under reduced motion the still photo stays. */
 (function () {
   'use strict';
   var img = document.querySelector('section[class*="Hero-module"] [data-bear-figure] img');
@@ -144,9 +146,10 @@
   var v = document.createElement('video');
   v.className = 'nd-bear-video';
   v.muted = true; v.defaultMuted = true; v.playsInline = true; v.preload = 'auto';
-  v.setAttribute('muted', ''); v.setAttribute('playsinline', ''); v.setAttribute('aria-hidden', 'true');
+  v.setAttribute('muted', ''); v.setAttribute('playsinline', ''); v.setAttribute('webkit-playsinline', '');
+  v.setAttribute('aria-hidden', 'true');
   v.poster = img.currentSrc || img.src;
-  [['img/bear-flag.webm', 'video/webm'], ['img/bear-flag.mp4', 'video/mp4']].forEach(function (x) {
+  [['img/bear-flag.mp4', 'video/mp4'], ['img/bear-flag.webm', 'video/webm']].forEach(function (x) {
     var so = document.createElement('source'); so.src = x[0]; so.type = x[1]; v.appendChild(so);
   });
   function place() {
@@ -156,15 +159,36 @@
   fig.appendChild(v);
   place();
   window.addEventListener('resize', place);
+  window.addEventListener('load', place);
   v.addEventListener('playing', function () { fig.classList.add('nd-video-on'); });
+
+  var blocked = false;
   function play() {
     if (!v.paused && !v.ended) return;
     if (v.ended) v.currentTime = 0;
     var p = v.play();
-    if (p && p.catch) p.catch(function () {});
+    if (p && p.catch) p.catch(function () { blocked = true; });
   }
-  if (v.readyState >= 2) play(); else v.addEventListener('canplay', function once() { v.removeEventListener('canplay', once); play(); });
-  fig.addEventListener('pointerenter', play);
+  /* first play: when at least half the bear is on screen */
+  var started = false;
+  function start() { if (!started) { started = true; play(); } }
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (e) {
+      if (e[0].isIntersecting) { io.disconnect(); start(); }
+    }, { threshold: 0.5 });
+    io.observe(fig);
+  } else { start(); }
+  /* autoplay blocked (e.g. iOS low-power mode): the first user gesture starts it */
+  function firstGesture() {
+    if (!blocked) return;
+    blocked = false; play();
+    window.removeEventListener('touchstart', firstGesture);
+    window.removeEventListener('pointerdown', firstGesture);
+  }
+  window.addEventListener('touchstart', firstGesture, { passive: true });
+  window.addEventListener('pointerdown', firstGesture);
+  window.addEventListener('scroll', function () { if (blocked) play(); }, { passive: true });
+  fig.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') play(); });
   fig.addEventListener('click', play);
 })();
 </script></body></html>
