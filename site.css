@@ -1152,3 +1152,21 @@ html[data-bear="quiet"] .Bear-module__ENTIHG__fallback { display: contents; }
   .page-module__pswZNq__skyline { opacity: 0.6; inline-size: 86vw; inset-inline-end: 7vw; }
   .page-module__pswZNq__countNum { font-size: 2.5rem; }
 }
+
+/* ─── National Day: waving flag hero (replaces the fireworks) ─── */
+.nd-flaghero{background:#1a0609}
+.nd-flaghero::before{display:none}
+.nd-flag{position:absolute;inset:0;z-index:-2;overflow:hidden}
+.nd-flag img{inline-size:100%;block-size:100%;object-fit:cover;object-position:left 22%;transform-origin:20% 40%;will-change:transform}
+.nd-scrim{position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:linear-gradient(to left,rgba(26,6,9,.88) 0%,rgba(26,6,9,.62) 36%,rgba(26,6,9,0) 62%),
+             linear-gradient(to top,rgba(74,16,25,.55) 0%,rgba(74,16,25,0) 30%)}
+.nd-flaghero .page-module__pswZNq__nightInner{padding-block:var(--space-11) var(--space-11)}
+.nd-flaghero .page-module__pswZNq__subtitle{max-inline-size:32rem}
+@media (max-width:767.98px){
+  .nd-flaghero{min-block-size:0;justify-content:flex-start;background:linear-gradient(180deg,#1a0609 0%,#2a0810 45%,#4a1019 100%)}
+  .nd-flag{inset:0 0 auto;block-size:auto}
+  .nd-flag img{block-size:auto;aspect-ratio:928/1152;object-position:left top;-webkit-mask-image:linear-gradient(to bottom,#000 62%,transparent 96%);mask-image:linear-gradient(to bottom,#000 62%,transparent 96%)}
+  .nd-scrim{background:linear-gradient(to top,#4a1019 0%,rgba(42,8,16,.92) 34%,rgba(26,6,9,0) 58%)}
+  .nd-flaghero .page-module__pswZNq__nightInner{padding-block:calc(100vw * .74) var(--space-9)}
+}
